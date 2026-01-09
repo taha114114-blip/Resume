@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taha Hussein | QA & Quality Assurance Leader</title>
+    <!-- Professional Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #2563eb;
+            --accent: #38bdf8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--secondary); }
+
+        /* --- Header --- */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 100px 20px 60px;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .sub-headline {
+            font-size: 1.25rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .contact-bar a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- Main Layout --- */
+        .wrapper {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        /* --- Sidebar --- */
+        aside section {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        aside h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 10px;
+        }
+
+        .skill-group { margin-bottom: 20px; }
+        .skill-group h4 { font-size: 0.85rem; margin-bottom: 10px; color: var(--text-main); }
+        
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag {
+            background: var(--bg);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        /* --- Main Content --- */
+        main section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--primary);
+        }
+
+        .section-title i { color: var(--secondary); }
+
+        .timeline-item {
+            margin-bottom: 35px;
+            padding-left: 20px;
+            border-left: 2px solid var(--border);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .item-title { font-weight: 700; font-size: 1.1rem; }
+        .item-subtitle { color: var(--secondary); font-weight: 600; }
+        .item-date { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+
+        ul { list-style: none; margin-top: 10px; }
+        ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        /* --- Projects Grid --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .project-card h4 { font-size: 0.95rem; margin-bottom: 10px; color: var(--primary); }
+        .project-card p { font-size: 0.85rem; color: var(--text-muted); }
+        .tech-tags { margin-top: 10px; font-weight: 700; font-size: 0.75rem; color: var(--secondary); }
+
+        /* --- Certifications --- */
+        .certs-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .cert-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: var(--bg);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .cert-item i { font-size: 1.5rem; color: #eab308; }
+        .cert-item div h5 { font-size: 0.85rem; }
+        .cert-item div p { font-size: 0.75rem; color: var(--text-muted); }
+
+        /* --- Mobile --- */
+        @media (max-width: 900px) {
+            .wrapper { grid-template-columns: 1fr; }
+            .projects-grid, .certs-list { grid-template-columns: 1fr; }
+            header h1 { font-size: 2rem; }
+            nav { display: none; }
+        }
+
+        @media print {
+            nav { display: none; }
+            body { background: white; padding: 0; }
+            .wrapper { display: block; }
+            aside section, main section { border: none; padding: 20px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#summary">Summary</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h1>TAHA HUSSEIN</h1>
+            <div class="sub-headline">Certified QA/Quality Assurance Leader (12+ Years)</div>
+            <div class="contact-bar">
+                <span><i class="fa-solid fa-location-dot"></i> Cairo, Egypt</span>
+                <span><i class="fa-solid fa-phone"></i> 01212151030</span>
+                <a href="mailto:taha114114@yahoo.com"><i class="fa-solid fa-envelope"></i> taha114114@yahoo.com</a>
+                <a href="https://linkedin.com/in/taha-hussein-mba-ct-tm-ct-ai-ct-genai-8319b140" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <!-- SIDEBAR -->
+        <aside>
+            <section id="skills">
+                <h3>Core Competencies</h3>
+                <div class="tag-container">
+                    <span class="tag">QA Management</span>
+                    <span class="tag">Healthcare QA</span>
+                    <span class="tag">PACS/RIS/HIS</span>
+                    <span class="tag">FHIR/HL7</span>
+                    <span class="tag">AI Testing</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">API Testing</span>
+                    <span class="tag">Six Sigma</span>
+                    <span class="tag">ISTQB</span>
+                    <span class="tag">Agile</span>
+                    <span class="tag">DICOM</span>
+                </div>
+            </section>
+
+            <section>
+                <h3>Technical Stack</h3>
+                <div class="skill-group">
+                    <h4>Tools & Platforms</h4>
+                    <div class="tag-container">
+                        <span class="tag">Azure DevOps</span>
+                        <span class="tag">JIRA</span>
+                        <span class="tag">Postman</span>
+                        <span class="tag">Git/GitHub</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Salesforce</span>
+                        <span class="tag">MTM</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4>Databases</h4>
+                    <div class="tag-container">
+                        <span class="tag">MySQL</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="education">
+                <h3>Education</h3>
+                <div class="timeline-item">
+                    <div class="item-title">Doctor of Business Administration (DBA)</div>
+                    <p class="item-subtitle">Arab Academy for Science & Tech</p>
+                    <p class="item-date">Expected 2028 | Pursuing</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="item-title">Master of Business Administration (MBA)</div>
+                    <p class="item-subtitle">Investment Management</p>
+                    <p class="item-date">2021 - 2023</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="item-title">Bachelor of Engineering (B.Eng.)</div>
+                    <p class="item-subtitle">Biomedical Engineering, Cairo University</p>
+                    <p class="item-date">2006 - 2011</p>
+                </div>
+            </section>
+
+            <section>
+                <h3>Languages</h3>
+                <p><strong>Arabic:</strong> Native</p>
+                <p><strong>English:</strong> Full Professional</p>
+            </section>
+
+            <section>
+                <h3>Professional Affiliations</h3>
+                <p><i class="fa-brands fa-linkedin"></i> 5,175+ Followers</p>
+                <p><i class="fa-solid fa-users"></i> 500+ Connections</p>
+                <p style="font-size: 0.8rem; margin-top:10px;">Active contributor to AI and Healthcare QA communities.</p>
+            </section>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <section id="summary">
+                <h2 class="section-title"><i class="fa-solid fa-user-tie"></i> Professional Summary</h2>
+                <p>Certified QA/Quality Assurance Leader with 12+ years of expertise in Software Quality Management, Healthcare Information Systems (HIS), AI-driven testing, and test automation. Specialized in healthcare domain including PACS, RIS, HL7 standards, and FHIR interoperability. Expert in leading cross-functional teams and driving process improvements using Six Sigma and Lean methodologies.</p>
+            </section>
+
+            <section id="experience">
+                <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
+
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">QA/QC Manager</div>
+                            <div class="item-subtitle">PaxeraHealth | Cairo, Egypt</div>
+                        </div>
+                        <div class="item-date">Sept 2025 - Present (Hybrid)</div>
+                    </div>
+                    <ul>
+                        <li>Lead QA/QC operations and team management for medical imaging software.</li>
+                        <li>Develop and implement QA strategies aligned with healthcare industry standards.</li>
+                        <li>Oversee quality metrics, performance benchmarking, and continuous improvement.</li>
+                        <li>Coordinate with cross-functional teams including Development, Product, and Clinical.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Business Analyst</div>
+                            <div class="item-subtitle">PaxeraHealth | Cairo, Egypt</div>
+                        </div>
+                        <div class="item-date">July 2024 - Aug 2025</div>
+                    </div>
+                    <ul>
+                        <li>Analyze business requirements and translate into technical specifications for healthcare.</li>
+                        <li>Support QA strategy development and implementation of testing frameworks.</li>
+                        <li>Document system functionalities and create test requirements traceability matrices.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Senior Test Lead</div>
+                            <div class="item-subtitle">PaxeraHealth | Giza, Egypt</div>
+                        </div>
+                        <div class="item-date">Jan 2024 - Sept 2024</div>
+                    </div>
+                    <ul>
+                        <li>Led test execution for healthcare imaging software modules.</li>
+                        <li>Managed test planning, case design, and execution of comprehensive test suites.</li>
+                        <li>Coordinated API testing, database validation, and performance testing.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Senior Testing and Quality Engineer</div>
+                            <div class="item-subtitle">CarePassport | Cairo, Egypt</div>
+                        </div>
+                        <div class="item-date">July 2014 - July 2017</div>
+                    </div>
+                    <ul>
+                        <li>Planned and executed testing strategies for web, mobile, and desktop platforms.</li>
+                        <li>Developed automation frameworks for smoke and regression test suites.</li>
+                        <li>Created detailed test cases and reports using Microsoft Test Manager (MTM).</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Software Quality Assurance Engineer</div>
+                            <div class="item-subtitle">Paxeramed Corporation</div>
+                        </div>
+                        <div class="item-date">July 2014 - July 2017</div>
+                    </div>
+                    <ul>
+                        <li>Designed and executed test cases for healthcare applications.</li>
+                        <li>Reported defects using standardized processes and tracked resolution.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Technical Support Specialist</div>
+                            <div class="item-subtitle">Barmed Medical Company</div>
+                        </div>
+                        <div class="item-date">March 2012 - July 2014</div>
+                    </div>
+                    <ul>
+                        <li>Provided technical support for medical device systems and IT infrastructure.</li>
+                        <li>Initiated and finalized technical contracts with hospitals.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Technical Support Specialist</div>
+                            <div class="item-subtitle">Heliopolis Military Hospital</div>
+                        </div>
+                        <div class="item-date">March 2012 - March 2013</div>
+                    </div>
+                    <ul>
+                        <li>Maintained IT systems and medical devices for compliance and audit purposes.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="certifications">
+                <h2 class="section-title"><i class="fa-solid fa-certificate"></i> Certifications & Training</h2>
+                <div class="certs-list">
+                    <div class="cert-item">
+                        <i class="fa-solid fa-award"></i>
+                        <div>
+                            <h5>CT-GenAI (ISTQB)</h5>
+                            <p>Testing with Generative AI | Dec 2025</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fa-solid fa-award"></i>
+                        <div>
+                            <h5>Google Cloud Digital Leader</h5>
+                            <p>Coursera Professional | Jan 2025</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fa-solid fa-award"></i>
+                        <div>
+                            <h5>CT-AI (ISTQB)</h5>
+                            <p>Certified AI Tester | 2024</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fa-solid fa-award"></i>
+                        <div>
+                            <h5>CT-TM (ISTQB)</h5>
+                            <p>Certified Test Manager | 2023</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fa-solid fa-award"></i>
+                        <div>
+                            <h5>ISTQB Foundation</h5>
+                            <p>Issued 2020</p>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <div>
+                            <h5>AI Medical Design</h5>
+                            <p>PaxeraHealth | 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; font-size: 0.85rem; color: var(--text-muted);">
+                    <strong>Additional Training:</strong> API Testing (Postman), Python Programming for QA, ITIL Foundation (Pursuing).
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> Key Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h4>AI Chatbot for Radiologist Support</h4>
+                        <p>Voice-enabled chatbot using NLP for documentation search and diagnostic assistance.</p>
+                        <div class="tech-tags">NLP, Python, AI, Voice Processing</div>
+                    </div>
+                    <div class="project-card">
+                        <h4>PaxeraHealth PACS as AI Engine</h4>
+                        <p>Leading project to transform PACS into an AI inference engine with DICOM study routing.</p>
+                        <div class="tech-tags">AI Implementation, DICOM, PACS</div>
+                    </div>
+                    <div class="project-card">
+                        <h4>AI-Powered Chest X-Ray Diagnosis</h4>
+                        <p>Advanced algorithms for abnormality detection and urgent case prioritization.</p>
+                        <div class="tech-tags">Computer Vision, Prompt Engineering</div>
+                    </div>
+                    <div class="project-card">
+                        <h4>ARK AI (Algorithms as a Service)</h4>
+                        <p>Zero-coding platform for clinically validated imaging AI production.</p>
+                        <div class="tech-tags">SQL, AI Scaling</div>
+                    </div>
+                    <div class="project-card">
+                        <h4>Integration with EPIC EMR</h4>
+                        <p>Seamless data exchange and workflow integration with Epic Electronic Medical Records.</p>
+                        <div class="tech-tags">HL7, Interoperability, SQL</div>
+                    </div>
+                    <div class="project-card">
+                        <h4>Diagnosing Diseases using AI</h4>
+                        <p>Validating AI predictions for Brain, Chest, and Mammo imaging across Linux/Docker.</p>
+                        <div class="tech-tags">Docker, API Testing, Postman</div>
+                    </div>
+                    <div class="project-card">
+                        <h4>CoronaCare App</h4>
+                        <p>Mobile/Web app for COVID-19 management and automated follow-up.</p>
+                        <div class="tech-tags">Mobile Testing, SQL</div>
+                    </div>
+                    <div class="project-card">
+                        <h4>Patient Summary Generation</h4>
+                        <p>Utilizing LLMs to highlight critical findings from historical radiology reports.</p>
+                        <div class="tech-tags">LLM, Prompt Engineering</div>
+                    </div>
+                    <div class="project-card">
+                        <h4>Speech-to-Text Reporting</h4>
+                        <p>Reducing report generation time by 82% through AI transcription.</p>
+                        <div class="tech-tags">Speech-to-Text, AI Testing</div>
+                    </div>
+                    <div class="project-card">
+                        <h4>LDAP/SAML Integration</h4>
+                        <p>Configuring secure single sign-on (SSO) and authentication protocols via Azure.</p>
+                        <div class="tech-tags">Azure, SAML, LDAP</div>
+                    </div>
+                    <div class="project-card">
+                        <h4>Brain Computer Interface (BCI)</h4>
+                        <p>Academic project integrating EEG caps for signal analysis and mechanical movement.</p>
+                        <div class="tech-tags">Signal Processing, Embedded Systems</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title"><i class="fa-solid fa-circle-info"></i> Additional Information</h2>
+                <ul>
+                    <li>Received 7+ professional recommendations from colleagues and supervisors.</li>
+                    <li>Strong track record in healthcare software quality and AI-driven testing innovation.</li>
+                    <li>Passionate about advancing quality assurance through data-driven methodologies.</li>
+                    <li>Active learner committed to continuous professional development.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer style="text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.8rem;">
+        &copy; 2026 Taha Hussein. All rights reserved.
+    </footer>
+
+</body>
+</html>
