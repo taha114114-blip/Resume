@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taha Hussein | QA & Quality Assurance Leader</title>
+    <title>Taha Hussein | Executive QA & Quality Assurance Leader</title>
     <!-- Professional Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Interactive Radar -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary: #0f172a;
@@ -20,11 +22,7 @@
             --border: #e2e8f0;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -43,7 +41,7 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
-            padding: 10px 0;
+            padding: 12px 0;
         }
 
         .nav-container {
@@ -57,10 +55,11 @@
 
         nav a {
             text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.85rem;
-            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
             transition: color 0.3s;
         }
 
@@ -70,24 +69,22 @@
         header {
             background: var(--primary);
             color: white;
-            padding: 100px 20px 60px;
+            padding: 120px 20px 80px;
             text-align: center;
+            background-image: radial-gradient(circle at 20% 30%, #1e293b 0%, #0f172a 100%);
         }
 
-        .header-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        .header-content { max-width: 900px; margin: 0 auto; }
 
         header h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 10px;
         }
 
         .sub-headline {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--accent);
             font-weight: 500;
             margin-bottom: 25px;
@@ -101,22 +98,26 @@
             font-size: 0.9rem;
         }
 
-        .contact-bar a {
-            color: white;
+        .contact-bar a, .contact-bar span {
+            color: #cbd5e1;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
+        .contact-bar a:hover { color: var(--accent); }
+
         /* --- Main Layout --- */
         .wrapper {
             max-width: 1100px;
-            margin: 40px auto;
+            margin: -40px auto 40px;
             display: grid;
             grid-template-columns: 320px 1fr;
-            gap: 40px;
+            gap: 30px;
             padding: 0 20px;
+            position: relative;
+            z-index: 10;
         }
 
         /* --- Sidebar --- */
@@ -126,29 +127,31 @@
             border-radius: 12px;
             margin-bottom: 30px;
             border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         aside h3 {
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             margin-bottom: 20px;
             color: var(--secondary);
             border-bottom: 2px solid var(--bg);
             padding-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         .skill-group { margin-bottom: 20px; }
-        .skill-group h4 { font-size: 0.85rem; margin-bottom: 10px; color: var(--text-main); }
+        .skill-group h4 { font-size: 0.8rem; margin-bottom: 10px; color: var(--text-muted); text-transform: uppercase; }
         
         .tag-container { display: flex; flex-wrap: wrap; gap: 8px; }
         .tag {
-            background: var(--bg);
+            background: #eff6ff;
             padding: 5px 12px;
             border-radius: 6px;
             font-size: 0.75rem;
             font-weight: 600;
-            color: var(--text-main);
-            border: 1px solid var(--border);
+            color: var(--secondary);
+            border: 1px solid #dbeafe;
         }
 
         /* --- Main Content --- */
@@ -156,8 +159,9 @@
             background: var(--card-bg);
             padding: 40px;
             border-radius: 12px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .section-title {
@@ -167,9 +171,21 @@
             align-items: center;
             gap: 15px;
             color: var(--primary);
+            font-weight: 700;
         }
 
         .section-title i { color: var(--secondary); }
+
+        .chart-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         .timeline-item {
             margin-bottom: 35px;
@@ -182,11 +198,12 @@
             content: '';
             position: absolute;
             left: -7px;
-            top: 0;
+            top: 5px;
             width: 12px;
             height: 12px;
             background: var(--secondary);
             border-radius: 50%;
+            border: 2px solid white;
         }
 
         .item-header {
@@ -196,9 +213,9 @@
             margin-bottom: 10px;
         }
 
-        .item-title { font-weight: 700; font-size: 1.1rem; }
+        .item-title { font-weight: 700; font-size: 1.1rem; color: var(--primary); }
         .item-subtitle { color: var(--secondary); font-weight: 600; }
-        .item-date { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        .item-date { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; background: var(--bg); padding: 2px 8px; border-radius: 4px; }
 
         ul { list-style: none; margin-top: 10px; }
         ul li {
@@ -213,6 +230,7 @@
             position: absolute;
             left: 0;
             color: var(--secondary);
+            font-weight: bold;
         }
 
         /* --- Projects Grid --- */
@@ -227,16 +245,18 @@
             padding: 20px;
             border-radius: 8px;
             border: 1px solid var(--border);
+            transition: transform 0.2s;
         }
 
+        .project-card:hover { transform: translateY(-3px); border-color: var(--secondary); }
         .project-card h4 { font-size: 0.95rem; margin-bottom: 10px; color: var(--primary); }
-        .project-card p { font-size: 0.85rem; color: var(--text-muted); }
-        .tech-tags { margin-top: 10px; font-weight: 700; font-size: 0.75rem; color: var(--secondary); }
+        .project-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+        .tech-tags { font-weight: 700; font-size: 0.7rem; color: var(--secondary); text-transform: uppercase; }
 
         /* --- Certifications --- */
         .certs-list {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 15px;
         }
 
@@ -245,27 +265,33 @@
             gap: 15px;
             align-items: center;
             background: var(--bg);
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
+            border: 1px solid var(--border);
         }
 
-        .cert-item i { font-size: 1.5rem; color: #eab308; }
-        .cert-item div h5 { font-size: 0.85rem; }
-        .cert-item div p { font-size: 0.75rem; color: var(--text-muted); }
+        .cert-item i { font-size: 1.5rem; min-width: 30px; text-align: center; }
+        .cert-item h5 { font-size: 0.9rem; margin-bottom: 4px; color: var(--primary); font-weight: 700; }
+        .cert-item p { font-size: 0.8rem; color: var(--text-main); line-height: 1.4; }
+        .cert-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+        .skills-line { font-size: 0.75rem; color: var(--secondary); margin-top: 5px; font-weight: 600; }
 
         /* --- Mobile --- */
         @media (max-width: 900px) {
-            .wrapper { grid-template-columns: 1fr; }
-            .projects-grid, .certs-list { grid-template-columns: 1fr; }
-            header h1 { font-size: 2rem; }
+            .wrapper { grid-template-columns: 1fr; margin-top: 20px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2.2rem; }
             nav { display: none; }
         }
 
         @media print {
             nav { display: none; }
-            body { background: white; padding: 0; }
-            .wrapper { display: block; }
-            aside section, main section { border: none; padding: 20px 0; }
+            body { background: white; }
+            .wrapper { display: block; margin-top: 0; }
+            aside section, main section { border: none; box-shadow: none; padding: 20px 0; }
+            header { background: white !important; color: black !important; padding: 20px 0; }
+            .contact-bar a, .contact-bar span { color: black !important; }
+            .chart-container { page-break-inside: avoid; }
         }
     </style>
 </head>
@@ -275,8 +301,8 @@
         <div class="nav-container">
             <a href="#summary">Summary</a>
             <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
             <a href="#certifications">Certifications</a>
+            <a href="#projects">Projects</a>
             <a href="#education">Education</a>
             <a href="#skills">Skills</a>
         </div>
@@ -291,6 +317,7 @@
                 <span><i class="fa-solid fa-phone"></i> 01212151030</span>
                 <a href="mailto:taha114114@yahoo.com"><i class="fa-solid fa-envelope"></i> taha114114@yahoo.com</a>
                 <a href="https://linkedin.com/in/taha-hussein-mba-ct-tm-ct-ai-ct-genai-8319b140" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://taha114114-blip.github.io/Resume/" target="_blank"><i class="fa-solid fa-globe"></i> Online Portfolio</a>
             </div>
         </div>
     </header>
@@ -341,34 +368,33 @@
 
             <section id="education">
                 <h3>Education</h3>
-                <div class="timeline-item">
-                    <div class="item-title">Doctor of Business Administration (DBA)</div>
-                    <p class="item-subtitle">Arab Academy for Science & Tech</p>
-                    <p class="item-date">Expected 2028 | Pursuing</p>
+                <div class="timeline-item" style="margin-bottom: 20px;">
+                    <div class="item-title" style="font-size: 0.9rem;">Doctor of Business Administration (DBA)</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Arab Academy for Science & Tech</p>
+                    <p class="item-date" style="margin-top: 5px;">Expected 2028 | Pursuing</p>
+                </div>
+                <div class="timeline-item" style="margin-bottom: 20px;">
+                    <div class="item-title" style="font-size: 0.9rem;">Master of Business Administration (MBA)</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Investment Management</p>
+                    <p class="item-date" style="margin-top: 5px;">2021 - 2023</p>
                 </div>
                 <div class="timeline-item">
-                    <div class="item-title">Master of Business Administration (MBA)</div>
-                    <p class="item-subtitle">Investment Management</p>
-                    <p class="item-date">2021 - 2023</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="item-title">Bachelor of Engineering (B.Eng.)</div>
-                    <p class="item-subtitle">Biomedical Engineering, Cairo University</p>
-                    <p class="item-date">2006 - 2011</p>
+                    <div class="item-title" style="font-size: 0.9rem;">Bachelor of Engineering (B.Eng.)</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Biomedical Engineering, Cairo University</p>
+                    <p class="item-date" style="margin-top: 5px;">2006 - 2011</p>
                 </div>
             </section>
 
             <section>
                 <h3>Languages</h3>
-                <p><strong>Arabic:</strong> Native</p>
-                <p><strong>English:</strong> Full Professional</p>
+                <p style="font-size: 0.9rem;"><strong>Arabic:</strong> Native</p>
+                <p style="font-size: 0.9rem;"><strong>English:</strong> Full Professional</p>
             </section>
 
             <section>
                 <h3>Professional Affiliations</h3>
-                <p><i class="fa-brands fa-linkedin"></i> 5,175+ Followers</p>
-                <p><i class="fa-solid fa-users"></i> 500+ Connections</p>
-                <p style="font-size: 0.8rem; margin-top:10px;">Active contributor to AI and Healthcare QA communities.</p>
+                <p style="font-size: 0.9rem;"><i class="fa-brands fa-linkedin" style="color: #0077b5;"></i> 5,175+ Followers</p>
+                <p style="font-size: 0.9rem;"><i class="fa-solid fa-users"></i> 500+ Connections</p>
             </section>
         </aside>
 
@@ -377,6 +403,11 @@
             <section id="summary">
                 <h2 class="section-title"><i class="fa-solid fa-user-tie"></i> Professional Summary</h2>
                 <p>Certified QA/Quality Assurance Leader with 12+ years of expertise in Software Quality Management, Healthcare Information Systems (HIS), AI-driven testing, and test automation. Specialized in healthcare domain including PACS, RIS, HL7 standards, and FHIR interoperability. Expert in leading cross-functional teams and driving process improvements using Six Sigma and Lean methodologies.</p>
+                
+                <div class="chart-container">
+                    <h4 style="font-size: 0.8rem; color: var(--secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Strategic Competency Map</h4>
+                    <canvas id="skillsRadarChart" width="400" height="400"></canvas>
+                </div>
             </section>
 
             <section id="experience">
@@ -388,7 +419,7 @@
                             <div class="item-title">QA/QC Manager</div>
                             <div class="item-subtitle">PaxeraHealth | Cairo, Egypt</div>
                         </div>
-                        <div class="item-date">Sept 2025 - Present (Hybrid)</div>
+                        <div class="item-date">Sept 2025 - Present</div>
                     </div>
                     <ul>
                         <li>Lead QA/QC operations and team management for medical imaging software.</li>
@@ -488,51 +519,262 @@
             <section id="certifications">
                 <h2 class="section-title"><i class="fa-solid fa-certificate"></i> Certifications & Training</h2>
                 <div class="certs-list">
+                    
                     <div class="cert-item">
-                        <i class="fa-solid fa-award"></i>
+                        <i class="fa-solid fa-award" style="color:#2563eb;"></i>
                         <div>
-                            <h5>CT-GenAI (ISTQB)</h5>
-                            <p>Testing with Generative AI | Dec 2025</p>
+                            <h5>ISTQB® Certified Tester - Testing with Generative AI(CT-GenAI)</h5>
+                            <p>ITIDA-SECC Software Engineering Competence Center</p>
+                            <div class="cert-meta">Issued Dec 2025 | Credential ID: 251202070</div>
                         </div>
                     </div>
+
                     <div class="cert-item">
-                        <i class="fa-solid fa-award"></i>
+                        <i class="fa-brands fa-google" style="color:#4285F4;"></i>
                         <div>
-                            <h5>Google Cloud Digital Leader</h5>
-                            <p>Coursera Professional | Jan 2025</p>
+                            <h5>Google Cloud Digital Leader Training Professional</h5>
+                            <p>Coursera / Google Cloud | Issued Jan 2025</p>
+                            <div class="skills-line">Skills: Cloud Concepts, AI/ML, Digital Transformation, Infrastructure & Trust</div>
                         </div>
                     </div>
+
                     <div class="cert-item">
-                        <i class="fa-solid fa-award"></i>
+                        <i class="fa-solid fa-scale-balanced" style="color:#64748b;"></i>
                         <div>
-                            <h5>CT-AI (ISTQB)</h5>
-                            <p>Certified AI Tester | 2024</p>
+                            <h5>Code of Conduct</h5>
+                            <p>EasyLlama | Issued Dec 2024</p>
+                            <div class="cert-meta">Credential ID: f43441e6-b52f-49c8-ad3b-85845b7ed063</div>
+                            <div class="skills-line">Skills: Ethical Business Practices, Workplace rights, Communication Standards</div>
                         </div>
                     </div>
+
                     <div class="cert-item">
-                        <i class="fa-solid fa-award"></i>
+                        <i class="fa-solid fa-robot" style="color:#2563eb;"></i>
                         <div>
-                            <h5>CT-TM (ISTQB)</h5>
-                            <p>Certified Test Manager | 2023</p>
+                            <h5>Artificial Intelligence Micro-Certification (AIC)™</h5>
+                            <p>Product School | Issued Sep 2024</p>
+                            <div class="cert-meta">Credential ID: cert_kmbx0z2c</div>
+                            <div class="skills-line">Skills: AI Product Management, Implementation, Use Case Development</div>
                         </div>
                     </div>
+
                     <div class="cert-item">
-                        <i class="fa-solid fa-award"></i>
+                        <i class="fa-solid fa-magnifying-glass" style="color:#2563eb;"></i>
                         <div>
-                            <h5>ISTQB Foundation</h5>
-                            <p>Issued 2020</p>
+                            <h5>Product Discovery Micro-Certification (PDC)™</h5>
+                            <p>Product School | Issued Sep 2024</p>
+                            <div class="cert-meta">Credential ID: cert_d5m0h3sm</div>
+                            <div class="skills-line">Skills: Problem Framing, Ideation, Prototyping, Hypothesis Formation</div>
                         </div>
                     </div>
+
                     <div class="cert-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
+                        <i class="fa-solid fa-rocket" style="color:#2563eb;"></i>
                         <div>
-                            <h5>AI Medical Design</h5>
-                            <p>PaxeraHealth | 2024</p>
+                            <h5>Product Launches Micro-Certification (PRLC)™</h5>
+                            <p>Product School | Issued Sep 2024</p>
+                            <div class="cert-meta">Credential ID: cert_0zkmxjf2</div>
                         </div>
                     </div>
-                </div>
-                <div style="margin-top: 20px; font-size: 0.85rem; color: var(--text-muted);">
-                    <strong>Additional Training:</strong> API Testing (Postman), Python Programming for QA, ITIL Foundation (Pursuing).
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-chess-knight" style="color:#2563eb;"></i>
+                        <div>
+                            <h5>Product Strategy Micro-Certification</h5>
+                            <p>Product School | Issued Sep 2024</p>
+                            <div class="cert-meta">Credential ID: cert_xkggpzqh</div>
+                            <div class="skills-line">Skills: Customer Analytics, Market Analysis, Product Strategy</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-brain" style="color:#eab308;"></i>
+                        <div>
+                            <h5>Generative AI Overview for Project Managers</h5>
+                            <p>Project Management Institute (PMI) | Issued May 2024</p>
+                            <div class="skills-line">Skills: AI Applications in PM, Utilising AI tools & Best Practices</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-diagram-project" style="color:#64748b;"></i>
+                        <div>
+                            <h5>Lean Six Sigma White Belt Certification</h5>
+                            <p>Six Sigma Online; Aveta Business Institute | Issued May 2024</p>
+                            <div class="cert-meta">Credential ID: djI5ODg4Ni0yOTg</div>
+                            <div class="skills-line">Skills: Lean Six Sigma, House of Quality</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-shield-halved" style="color:#ef4444;"></i>
+                        <div>
+                            <h5>2024 Information Security Refresher Training</h5>
+                            <p>Paxerahealth | Issued Apr 2024</p>
+                            <div class="cert-meta">Credential ID: 867971510545</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-brands fa-youtube" style="color:#ff0000;"></i>
+                        <div>
+                            <h5>Prompt Engineering Masterclass</h5>
+                            <p>YouTube | Issued Apr 2024</p>
+                            <div class="skills-line">Skills: Prompt Engineering, ChatGPT</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-bug-slash" style="color:#2563eb;"></i>
+                        <div>
+                            <h5>Defend Yourself Against Malware</h5>
+                            <p>PaxeraHealth | Issued Mar 2024</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-terminal" style="color:#000;"></i>
+                        <div>
+                            <h5>Fundamentals of Kali Linux</h5>
+                            <p>Udemy | Issued Mar 2024</p>
+                            <div class="skills-line">Skills: Linux, Kali Linux</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-hospital-user" style="color:#0f172a;"></i>
+                        <div>
+                            <h5>HIPAA Security Rule & Mobile Devices Security</h5>
+                            <p>PaxeraHealth | Issued Mar 2024</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-wand-sparkles" style="color:#22c55e;"></i>
+                        <div>
+                            <h5>Prompt Engineering+: Master Speaking To AI (2023)</h5>
+                            <p>Udemy | Issued Feb 2024</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-file-shield" style="color:#0f172a;"></i>
+                        <div>
+                            <h5>HIPAA BA State/Federal Laws & Business Associates</h5>
+                            <p>PaxeraHealth | Issued Nov 2023</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-people-group" style="color:#64748b;"></i>
+                        <div>
+                            <h5>Sexual Harassment Training for Supervisors and Managers</h5>
+                            <p>PaxeraHealth | Issued Nov 2023</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-award" style="color:#2563eb;"></i>
+                        <div>
+                            <h5>ISTQB® Certified Tester - Artificial Intelligence Tester(CT-AI)</h5>
+                            <p>ITIDA | Issued Jun 2022</p>
+                            <div class="cert-meta">Credential ID: 220601028</div>
+                            <div class="skills-line">Skills: AI Systems Testing, Figma</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-brands fa-python" style="color:#3776ab;"></i>
+                        <div>
+                            <h5>Introduction to Programming Using Python</h5>
+                            <p>Udemy | Issued Apr 2022</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-building-columns" style="color:#0f172a;"></i>
+                        <div>
+                            <h5>Contemporary Management</h5>
+                            <p>Arab Academy for Science, Technology and Maritime Transport | Issued Mar 2022</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-user-check" style="color:#2563eb;"></i>
+                        <div>
+			    <h5>ISTQB® Certified Tester - Test Manager(CT-TM)</h5>
+                            <p>ITIDA | Issued Jun 2021</p>
+                            <div class="cert-meta">Credential ID: 210609005</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-mobile-screen-button" style="color:#ff6b6b;"></i>
+                        <div>
+                            <h5>Mobile App Testing Strategy: How to get it right?</h5>
+                            <p>BrowserStack | Issued Jun 2021</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-gears" style="color:#2563eb;"></i>
+                        <div>
+                            <h5>REST API Testing</h5>
+                            <p>Udemy | Issued May 2021</p>
+                            <div class="skills-line">Skills: REST APIs</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-vial-circle-check" style="color:#22c55e;"></i>
+                        <div>
+                            <h5>Be BDD Ready with TestProject</h5>
+                            <p>TestProject | Issued Feb 2021</p>
+                            <div class="cert-meta">Credential ID: 28850091</div>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-code" style="color:#2563eb;"></i>
+                        <div>
+                            <h5>Appium Mobile Automation</h5>
+                            <p>Tricentis Test Management for Jira | Issued May 2020</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-gauge-high" style="color:#2563eb;"></i>
+                        <div>
+                            <h5>Performance Testing using JMeter</h5>
+                            <p>Udemy | Issued Apr 2020</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-flask" style="color:#2563eb;"></i>
+                        <div>
+                            <h5>Test Automation using Selenium and Java</h5>
+                            <p>TestPro Pty Ltd | Issued Feb 2017</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-pen-ruler" style="color:#2563eb;"></i>
+                        <div>
+                            <h5>Software Test Design Techniques & Agile Tester (CTFL-AT)</h5>
+                            <p>ITIDA | Issued 2016</p>
+                        </div>
+                    </div>
+
+                    <div class="cert-item">
+                        <i class="fa-solid fa-certificate" style="color:#2563eb;"></i>
+                        <div>
+			    <h5>ISTQB® Certified Tester - Foundation Level(CT-FL)</h5>
+                            <p>ITIDA | Issued Mar 2016</p>
+                            <div class="cert-meta">Credential ID: 160303052</div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
@@ -609,9 +851,49 @@
         </main>
     </div>
 
-    <footer style="text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.8rem;">
-        &copy; 2026 Taha Hussein. All rights reserved.
+    <footer style="text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border);">
+        &copy; 2026 Taha Hussein. All rights reserved. | Executive QA Portfolio
     </footer>
 
+    <script>
+        const ctx = document.getElementById('skillsRadarChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'QA Leadership', 
+                    'Healthcare (HL7/PACS)', 
+                    'AI Testing (CT-AI)', 
+                    'Test Automation', 
+                    'API & DB Testing', 
+                    'Six Sigma/Process'
+                ],
+                datasets: [{
+                    label: 'Expertise Level',
+                    data: [98, 95, 92, 88, 90, 85],
+                    fill: true,
+                    backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                    borderColor: 'rgb(37, 99, 235)',
+                    pointBackgroundColor: 'rgb(37, 99, 235)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(37, 99, 235)'
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: { display: true },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
